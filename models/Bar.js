@@ -12,15 +12,15 @@ var barSchema = new Schema({
         timestamps: true
     });
 
-// this is called a hook 
-studentSchema.post('remove', function (student) {
-    var Course = this.model('Course');
-    Course.find({ students: student._id }, function (err, courses) {
-        courses.forEach(function (course) {
-            course.students.remove(student._id);
-            course.save();
+// this is called a hook
+barSchema.post('remove', function (bar) {
+    var Beer = this.model('Beer');
+    Beer.find({ bars: bar._id }, function (err, beers) {
+        beers.forEach(function (beer) {
+            beer.bars.remove(bar._id);
+            beer.save();
         });
     });
 });
 
-module.exports = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('Bar', barSchema);
