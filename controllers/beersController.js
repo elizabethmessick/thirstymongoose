@@ -15,15 +15,20 @@ module.exports = {
     },
 
     create: function (req, res, next) {
-        let data = req.body;
-        Beer.create({
-            name: data.name
-        }, function (err) {
-            if (err) return next(err);
-            res.redirect('/beers/');
+        //     let data = req.body;
+        //     Beer.create({
+        //         name: data.name,
+        //         style: data.style
+        //     }, function (err) {
+        //         if (err) return next(err);
+        //         res.redirect('/beers/');
+        //     });
+        // },
+        var beer = new Beer(req.body);
+        beer.save(err => {
+            res.redirect(`/beers/${beer.id}`);
         });
     },
-
     show: function (req, res, next) {
         Beer.findById(req.params.id).populate('bars').exec(function (err, beer) {
             if (err) return next(err);

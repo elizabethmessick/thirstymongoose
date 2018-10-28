@@ -3,6 +3,9 @@
 <h1>
     <%= beer.name %>
 </h1>
+<h1>
+    <%= beer.style %>
+</h1>
 <form method="POST" action="/beers/<%= beer._id %>?_method=DELETE">
     <button class="delete" type="submit">Delete</button>
 </form>

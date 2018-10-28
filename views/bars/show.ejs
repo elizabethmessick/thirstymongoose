@@ -3,6 +3,9 @@
 <h1>
     <%= bar.name %>
 </h1>
+<h1>
+    <%= bar.location %>
+</h1>
 <form method="POST" action="/bars/<%= bar._id %>?_method=DELETE">
     <button class="delete" type="submit">Delete</button>
 </form>

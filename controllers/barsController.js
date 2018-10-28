@@ -12,12 +12,18 @@ module.exports = {
         res.render('bars/new');
     },
     create: function (req, res, next) {
-        let data = req.body;
-        Bar.create({
-            name: data.name
-        }, function (err) {
-            if (err) return next(err);
-            res.redirect('/bars');
+        //     let data = req.body;
+        //     Bar.create({
+        //         name: data.name,
+        //         location: data.location
+        //     }, function (err) {
+        //         if (err) return next(err);
+        //         res.redirect('/bars');
+        //     });
+        // },var bar = new Bar(req.body);
+        var bar = new Bar(req.body);
+        bar.save(err => {
+            res.redirect(`/bars/${bar.id}`);
         });
     },
 
